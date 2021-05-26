@@ -72,7 +72,7 @@
         <Parameter name="Solver name" type="string" value="PCG"/>
         <Parameter name="Preconditioner" type="string" value="AMGe-HIP-GS_1"/>
         <Parameter name="Print level" type="int" value="1"/>
-        <Parameter name="Maximum iterations" type="int" value="500"/>
+        <Parameter name="Maximum iterations" type="int" value="1000"/>
         <Parameter name="Relative tolerance" type="double" value="1e-6"/>
         <Parameter name="Absolute tolerance" type="double" value="1e-8"/>
       </ParameterList>
@@ -88,7 +88,7 @@
         <Parameter name="Solver name" type="string" value="PCG"/>
         <Parameter name="Preconditioner" type="string" value="AMGe-GS"/>
         <Parameter name="Print level" type="int" value="1"/>
-        <Parameter name="Maximum iterations" type="int" value="500"/>
+        <Parameter name="Maximum iterations" type="int" value="1000"/>
         <Parameter name="Relative tolerance" type="double" value="1e-6"/>
         <Parameter name="Absolute tolerance" type="double" value="1e-8"/>
       </ParameterList>
@@ -190,7 +190,7 @@
       <Parameter name="Type" type="string" value="AMS"/>
       <ParameterList name="Solver Parameters">
         <Parameter name="Cycle type" type="int" value="13"/>
-        <Parameter name="Print level" type="int" value="1"/>
+        <Parameter name="Print level" type="int" value="0"/>
         <Parameter name="Relaxation type" type="int" value="2"/>
         <Parameter name="Relaxation sweeps" type="int" value="1"/>
         <Parameter name="Relaxation weight" type="double" value="1.0"/>

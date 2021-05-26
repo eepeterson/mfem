@@ -62,7 +62,8 @@ int main(int argc, char *argv[])
          args.PrintUsage(cout);
       return EXIT_FAILURE;
    }
-   args.PrintOptions(cout);
+   if (!myid)
+      args.PrintOptions(cout);
    string xml_file(xml_file_c);
 
    // Read and parse the detailed parameter list from file.
@@ -409,8 +410,8 @@ int main(int argc, char *argv[])
    for(int l = 0; l < nLevels - 1; ++l)
    {
       Timer derhaml_timer = TimeManager::AddTimer(std::string("DeRhamSequence "
-                                               "Construction -- Level ").
-                                               append(std::to_string(l+1)));
+                                                  "Construction -- Level ").
+                                                  append(std::to_string(l+1)));
       if (!myid)
          cout << "Building the level " << l + 1 << " de Rham sequences...\n";
 
