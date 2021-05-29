@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
               "(alpha curl u, curl v) + (beta u, v).\n\n";
 
    // Get basic parameters from command line.
-   const char *xml_file_c = "MultilevelHcurlSolver_example_parameters.xml";
+   const char *xml_file_c = "MultilevelHcurlSolver_cube_example_parameters.xml";
    bool visualize = false;
    OptionsParser args(argc, argv);
    args.AddOption(&xml_file_c, "-f", "--xml-file",

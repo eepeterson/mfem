@@ -8,12 +8,12 @@ obtained as a source code from:
 
    http://github.com/LLNL/parelag
 
-This contains a couple of miniapps that employ MFEM and ParElag to solve
-H(curl)- and H(div)-elliptic forms. They use: a multilevel hierarchy of de Rham
-complexes of finite element spaces, built by ParElag; Hiptmair-type smoothers,
-implemented in ParElag; and AMS (Auxiliary-space Maxwell Solver) or ADS
-(Auxiliary-space Divergence Solver), from HYPRE, for preconditioning or solving
-on the coarsest levels.
+This directory contains a couple of miniapps that employ MFEM and ParElag to
+solve H(curl)- and H(div)-elliptic forms by an element based algebraic multigrid
+(AMGe). They use: a multilevel hierarchy of de Rham complexes of finite element
+spaces, built by ParElag; Hiptmair-type smoothers, implemented in ParElag; and
+AMS (Auxiliary-space Maxwell Solver) or ADS (Auxiliary-space Divergence Solver),
+from HYPRE, for preconditioning or solving on the coarsest levels.
 
 Alternatively, it is possible to precondition or solve the H(div) form on the
 coarsest level via a hybridization approach. However, this is not yet
@@ -50,16 +50,17 @@ YES and PARELAG_DIR needs to point to the location of ParElag (e.g.,
 
 Moreover, parelag/configure_library.sh needs to be slightly modified to set
 WORKSPACE, which is the directory that contains parelag/, and the paths to
-compiled SuiteSparse, METIS, HYPRE, and MFEM. Refer to parelag/INSTALL.
+compiled (or to be compiled) SuiteSparse, METIS, HYPRE, and MFEM. Refer to
+parelag/INSTALL.
 
 If everything is set correctly, the following commands, in the respective shown
 directories (mfem/ and parelag/), should build ParElag, MFEM, and the miniapps:
 
-   mfem/$ make parallel -j 8
+   mfem/$ make parallel
    parelag/$ ./configure_library.sh
    parelag/$ cd build
-   parelag/build/$ make -j 8
-   mfem/$ make miniapps -j 8
+   parelag/build/$ make
+   mfem/$ make miniapps
 
  Using CMake
  --------------
@@ -72,7 +73,8 @@ ON and PARELAG_DIR needs to point to the location of ParElag (e.g.,
 
 Moreover, parelag/configure_library.sh needs to be slightly modified to set
 WORKSPACE, which is the directory that contains parelag/, and the paths to
-compiled SuiteSparse, METIS, HYPRE, and MFEM. Refer to parelag/INSTALL.
+compiled (or to be compiled) SuiteSparse, METIS, HYPRE, and MFEM. Refer to
+parelag/INSTALL.
 
 If everything is set correctly, the following commands, in the respective shown
 directories (mfem/ and parelag/), should build ParElag, MFEM, and the miniapps:
@@ -80,11 +82,11 @@ directories (mfem/ and parelag/), should build ParElag, MFEM, and the miniapps:
    mfem/$ mkdir build
    mfem/$ cd build
    mfem/build/$ cmake ..
-   mfem/build/$ make -j 8
+   mfem/build/$ make
    parelag/$ ./configure_library.sh
    parelag/$ cd build
-   parelag/build/$ make -j 8
-   mfem/build/$ make miniapps -j 8
+   parelag/build/$ make
+   mfem/build/$ make miniapps
 
 
 Usage
@@ -104,7 +106,13 @@ example, as follows:
    mfem/miniapps/parelag/$ ./MultilevelHdivSolver -f \
                                  MultilevelHdivSolver_example_parameters.xml
 
-The miniapps can be executed in parallel, e.g., using mpirun.
+The miniapps can be executed in parallel, e.g., using mpirun. Particularly,
+MultilevelH*Solver_example_parameters.xml are set to use the "crooked pipe"
+problem and that would most likely require being executed on a larger machine in
+parallel (e.g., using 72 processes).
+
+However, MultilevelH*Solver_cube_example_parameters.xml are set to
+solve a smaller unit cube problem and can be executed faster and in serial.
 
 Note that the examples in their current form are limited to 3D meshes and
 problems.
@@ -118,7 +126,8 @@ The examples allow piecewise constant coefficients in areas of the domain
 associated with mesh attributes. The particular attributes and values can be
 set in the parameters .xml files.
 
-If GLVIS is running, the final obtained solution is visualized.
+If GLVIS is running, the agglomerated elements and final obtained solution can
+be visualized.
 
 
 References

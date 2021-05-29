@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
               "(alpha div u, div v) + (beta u, v).\n\n";
 
    // Get basic parameters from command line.
-   const char *xml_file_c = "MultilevelHdivSolver_example_parameters.xml";
+   const char *xml_file_c = "MultilevelHdivSolver_cube_example_parameters.xml";
    bool visualize = false;
    OptionsParser args(argc, argv);
    args.AddOption(&xml_file_c, "-f", "--xml-file",
