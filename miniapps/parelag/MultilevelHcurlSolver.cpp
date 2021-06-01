@@ -49,12 +49,15 @@ int main(int argc, char *argv[])
    // Get basic parameters from command line.
    const char *xml_file_c = "MultilevelHcurlSolver_cube_example_parameters.xml";
    bool visualize = false;
+   double tolSVD = 1e-3;
    OptionsParser args(argc, argv);
    args.AddOption(&xml_file_c, "-f", "--xml-file",
                   "XML parameter list (an XML file with detailed parameters).");
    args.AddOption(&visualize, "-v", "--visualize", "-nv", "--no-visualize",
                   "Use GLVis to visualize the final solution and the "
                   "agglomerates.");
+   args.AddOption(&tolSVD, "-s", "--svd-tol",
+                  "SVD tolerance.");
    args.Parse();
    if (!args.Good())
    {
@@ -415,7 +418,6 @@ int main(int argc, char *argv[])
       if (!myid)
          cout << "Building the level " << l + 1 << " de Rham sequences...\n";
 
-      const double tolSVD = 1e-3;
       sequence[l]->SetSVDTol(tolSVD);
       sequence[l + 1] = sequence[l]->Coarsen();
 
