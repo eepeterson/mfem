@@ -101,18 +101,21 @@ When executing a miniapp, the .xml file needs to be explicitly supplied. For
 example, as follows:
 
    mfem/miniapps/parelag/$ ./MultilevelHcurlSolver -f \
-                                 MultilevelHcurlSolver_example_parameters.xml
+                               MultilevelHcurlSolver_pipe_example_parameters.xml
 
    mfem/miniapps/parelag/$ ./MultilevelHdivSolver -f \
-                                 MultilevelHdivSolver_example_parameters.xml
+                               MultilevelHdivSolver_pipe_example_parameters.xml
 
 The miniapps can be executed in parallel, e.g., using mpirun. Particularly,
-MultilevelH*Solver_example_parameters.xml are set to use the "crooked pipe"
+MultilevelH*Solver_pipe_example_parameters.xml are set to use the "crooked pipe"
 problem and that would most likely require being executed on a larger machine in
 parallel (e.g., using 72 processes).
 
 However, MultilevelH*Solver_cube_example_parameters.xml are set to
 solve a smaller unit cube problem and can be executed faster and in serial.
+
+The mesh files CrookedPipeMesh_2.mesh and cube456.mesh can be found in
+parelag/meshes/ and coppied to mfem/miniapps/parelag/ to execute the miniapps.
 
 Note that the examples in their current form are limited to 3D meshes and
 problems.
